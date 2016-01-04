@@ -46,6 +46,7 @@
             this.spinStatus = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button5 = new System.Windows.Forms.Button();
+            this.updateComplete = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.spinStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -150,7 +151,7 @@
             this.infoStatus.Name = "infoStatus";
             this.infoStatus.Size = new System.Drawing.Size(220, 13);
             this.infoStatus.TabIndex = 22;
-            this.infoStatus.Text = "System Ready For Updat?";
+            this.infoStatus.Text = "System Ready For Update?";
             this.infoStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // button2
@@ -223,6 +224,19 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // updateComplete
+            // 
+            this.updateComplete.AutoSize = true;
+            this.updateComplete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateComplete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.updateComplete.Location = new System.Drawing.Point(32, 163);
+            this.updateComplete.MinimumSize = new System.Drawing.Size(220, 13);
+            this.updateComplete.Name = "updateComplete";
+            this.updateComplete.Size = new System.Drawing.Size(220, 13);
+            this.updateComplete.TabIndex = 30;
+            this.updateComplete.Text = "Update Complete";
+            this.updateComplete.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,6 +259,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.updateComplete);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.Text = "Updating WWIV 5";
@@ -273,5 +288,6 @@
         private System.Windows.Forms.Label versionNumber;
         private System.Windows.Forms.PictureBox spinStatus;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label updateComplete;
     }
 }

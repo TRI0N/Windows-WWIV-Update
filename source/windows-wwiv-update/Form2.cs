@@ -22,7 +22,7 @@ using System.IO.Compression;
 using System.Net;
 using System.Diagnostics;
 using System.Windows.Forms;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace windows_wwiv_update
 {
@@ -38,6 +38,7 @@ namespace windows_wwiv_update
             button3.Visible = false;
             button4.Visible = false;
             button5.Visible = false;
+            updateComplete.Visible = false;
 
             if (Process.GetProcessesByName("bbs").Length >= 1)
             {
@@ -88,7 +89,7 @@ namespace windows_wwiv_update
             Application.Restart();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             string fetchVersion;
             fetchVersion = label2.Text;
@@ -99,10 +100,7 @@ namespace windows_wwiv_update
             spinStatus.Visible = true;
 
             // Sleep for 2 Seconds for UI to Build
-            for (int i = 0; i < 5; i++)
-            {
-                Thread.Sleep(2000);
-            }
+            await Task.Delay(5000);
 
             // Make Sure Build Number Is NOT Null
             if (fetchVersion != null)
@@ -147,6 +145,8 @@ namespace windows_wwiv_update
 
                 // Update Complete
                 spinStatus.Visible = false;
+                updateComplete.Text = "WWIV 5 Build " + fetchVersion + " Is Complete!";
+                updateComplete.Visible = true;
                 button3.Visible = true;
                 button4.Visible = true;
                 button5.Visible = true;
