@@ -80,7 +80,7 @@ namespace windows_wwiv_update
             {
                 button1.Enabled = false;
                 infoStatus.ForeColor = System.Drawing.Color.Green;
-                infoStatus.Text = "All Systems Are Offline... Update Ready!";
+                infoStatus.Text = "All Systems Are Offline... Ready To Update!";
             }
         }
 
@@ -100,7 +100,7 @@ namespace windows_wwiv_update
             spinStatus.Visible = true;
 
             // Sleep for 2 Seconds for UI to Build
-            await Task.Delay(5000);
+            await Task.Delay(2000);
 
             // Make Sure Build Number Is NOT Null
             if (fetchVersion != null)
@@ -145,6 +145,7 @@ namespace windows_wwiv_update
 
                 // Update Complete
                 spinStatus.Visible = false;
+                updateComplete.ForeColor = System.Drawing.Color.Green;
                 updateComplete.Text = "WWIV 5 Build " + fetchVersion + " Is Complete!";
                 updateComplete.Visible = true;
                 button3.Visible = true;
