@@ -32,6 +32,8 @@ namespace windows_wwiv_update
         {
             InitializeComponent();
             label2.Text = fetchVersion;
+
+            // Update UI Cosmetics
             spinStatus.Visible = false;
             label1.Visible = false;
             label2.Visible = false;
@@ -40,6 +42,7 @@ namespace windows_wwiv_update
             button5.Visible = false;
             updateComplete.Visible = false;
 
+            // Check For Running Instances Of WWIV Programs
             if (Process.GetProcessesByName("bbs").Length >= 1)
             {
                 wwivStatus.ForeColor = System.Drawing.Color.Red;
@@ -84,13 +87,16 @@ namespace windows_wwiv_update
             }
         }
 
+        // Restart Button
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Restart();
         }
 
+        // Update WWIV Button
         private async void button2_Click(object sender, EventArgs e)
         {
+            // Update UI Cosmetics
             string fetchVersion;
             fetchVersion = label2.Text;
             button1.Visible = false;
@@ -99,13 +105,13 @@ namespace windows_wwiv_update
             label2.Visible = true;
             spinStatus.Visible = true;
 
-            // Sleep for 2 Seconds for UI to Build
+            // Sleep for 2 Seconds For UI To Build
             await Task.Delay(2000);
 
             // Make Sure Build Number Is NOT Null
             if (fetchVersion != null)
             {
-                // Set Global Strings For Update
+                // Set Global Variables For Update
                 string backupPath = @"C:\wwiv";
                 string zipPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Documents\" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_wwiv-backup.zip";
                 string extractPath = @"C:\wwiv";
@@ -115,7 +121,6 @@ namespace windows_wwiv_update
                 string updatePath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Downloads\wwiv-build-win-" + fetchVersion + ".zip";
 
                 // Begin WWIV Backup
-
                 ZipFile.CreateFromDirectory(backupPath, zipPath);
 
                 // Fetch Latest Sucessful Build
@@ -147,6 +152,8 @@ namespace windows_wwiv_update
                 spinStatus.Visible = false;
                 updateComplete.ForeColor = System.Drawing.Color.Green;
                 updateComplete.Text = "WWIV 5 Build " + fetchVersion + " Is Complete!";
+
+                // Update UI Cosmetics
                 updateComplete.Visible = true;
                 button3.Visible = true;
                 button4.Visible = true;
@@ -154,6 +161,7 @@ namespace windows_wwiv_update
             }
         }
 
+        // Launch WWIV With Network Button
         private void button4_Click(object sender, EventArgs e)
         {
             // Launch WWIV, WWIVnet and Latest Changes in Browser.
@@ -179,6 +187,7 @@ namespace windows_wwiv_update
             Application.Exit();
         }
 
+        // Launch WWIV Without Network Button
         private void button3_Click(object sender, EventArgs e)
         {
             // Launch WWIV, WWIVnet and Latest Changes in Browser.
@@ -199,6 +208,7 @@ namespace windows_wwiv_update
             Application.Exit();
         }
 
+        // Exit Program Button
         private void button5_Click(object sender, EventArgs e)
         {
             // Exit Application

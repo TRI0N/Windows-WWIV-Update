@@ -193,7 +193,7 @@
             this.versionNumber.Name = "versionNumber";
             this.versionNumber.Size = new System.Drawing.Size(142, 13);
             this.versionNumber.TabIndex = 27;
-            this.versionNumber.Text = "WWIV UPDATE V2.0.32 | ßeta";
+            this.versionNumber.Text = "WWIV UPDATE V2.0.33 | ßeta";
             // 
             // spinStatus
             // 
@@ -228,7 +228,7 @@
             // 
             this.updateComplete.AutoSize = true;
             this.updateComplete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updateComplete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.updateComplete.ForeColor = System.Drawing.Color.Green;
             this.updateComplete.Location = new System.Drawing.Point(32, 163);
             this.updateComplete.MinimumSize = new System.Drawing.Size(220, 13);
             this.updateComplete.Name = "updateComplete";

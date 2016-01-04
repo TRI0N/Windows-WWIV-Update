@@ -28,7 +28,8 @@ namespace windows_wwiv_update
         public Form1()
         {
             InitializeComponent();
-            // Declare and Initilize Set Build Number Variables to 0
+
+            // Declare And Initilize Set Build Number Variables to 0
             string wwivBuild5_1 = "0";
             string wwivBuild5_0 = "0";
 
@@ -36,6 +37,7 @@ namespace windows_wwiv_update
             WebClient wc = new WebClient();
             string htmlString1 = wc.DownloadString("http://build.wwivbbs.org/jenkins/job/wwiv/lastSuccessfulBuild/label=windows/");
             Match mTitle1 = Regex.Match(htmlString1, "(?:number.*?>)(?<buildNumber1>.*?)(?:<)");
+            
             // Fetch Latest Build Number For WWIV 5.0
             string htmlString2 = wc.DownloadString("https://build.wwivbbs.org/jenkins/job/wwiv_5.0.0/lastSuccessfulBuild/label=windows/");
             Match mTitle2 = Regex.Match(htmlString2, "(?:number.*?>)(?<buildNumber2>.*?)(?:<)");
@@ -47,7 +49,7 @@ namespace windows_wwiv_update
             version50.Text = wwivBuild5_0;
         }
 
-        // Update to Newest WWIV 5.1
+        // Update To Newest WWIV 5.1
         private void update51_Click(object sender, EventArgs e)
         {
             string updateToNew51;
@@ -76,7 +78,7 @@ namespace windows_wwiv_update
             }
         }
 
-        // Update to Newest WWIV 5.0
+        // Update To Newest WWIV 5.0
         private void update50_Click(object sender, EventArgs e)
         {
             string updateToNew50;
@@ -105,7 +107,7 @@ namespace windows_wwiv_update
             }
         }
 
-        // Update to User Defined WWIV 5.x
+        // Update To User Defined WWIV 5.x
         private void customUpdate_Click(object sender, EventArgs e)
         {
             const int MinLength = 4;
