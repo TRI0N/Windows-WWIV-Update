@@ -22,25 +22,42 @@ using System.IO.Compression;
 using System.Net;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Threading;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace windows_wwiv_update
 {
     public partial class Form2 : Form
     {
+
+        // BackgroundWorker Event
+        BackgroundWorker m_oWorker;
+
         public Form2(string fetchVersion)
         {
             InitializeComponent();
             label2.Text = fetchVersion;
 
+            m_oWorker = new BackgroundWorker();
+
+            // BackgroundWorker Properties
+            m_oWorker.DoWork += new DoWorkEventHandler(m_oWorker_DoWork);
+            m_oWorker.ProgressChanged += new ProgressChangedEventHandler
+                    (m_oWorker_ProgressChanged);
+            m_oWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler
+                    (m_oWorker_RunWorkerCompleted);
+            m_oWorker.WorkerReportsProgress = true;
+            m_oWorker.WorkerSupportsCancellation = true;
+
             // Update UI Cosmetics
-            spinStatus.Visible = false;
             label1.Visible = false;
             label2.Visible = false;
             button3.Visible = false;
             button4.Visible = false;
             button5.Visible = false;
-            updateComplete.Visible = false;
+            progressBar1.Visible = false;
+            activeStatus.Visible = false;
 
             // Check For Running Instances Of WWIV Programs
             if (Process.GetProcessesByName("bbs").Length >= 1)
@@ -87,6 +104,43 @@ namespace windows_wwiv_update
             }
         }
 
+        // BackgroundWorker End Of Task Reporting
+        void m_oWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            // Fetch Version
+            string fetchVersion;
+            fetchVersion = label2.Text;
+            // Cancel Reporting 
+            if (e.Cancelled)
+            {
+                infoStatus.Text = "Task Cancelled.";
+            }
+            // Error Reporting
+            else if (e.Error != null)
+            {
+                infoStatus.Text = "Error while performing background operation.";
+            }
+            else
+            {
+                // Everything completed normally.
+                infoStatus.Text = "WWIV 5 Build " + fetchVersion + " Is Complete!";
+                progressBar1.Visible = true;
+                activeStatus.Visible = false;
+
+                // Update UI Cosmetics
+                button3.Visible = true;
+                button4.Visible = true;
+                button5.Visible = true;
+            }
+        }
+
+        // BackgroundWorker Progress And Infomation Update
+        void m_oWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
+            infoStatus.Text = "Updating WWIV 5......" + progressBar1.Value.ToString() + "%";
+        }
+
         // Restart Button
         private void button1_Click(object sender, EventArgs e)
         {
@@ -94,7 +148,7 @@ namespace windows_wwiv_update
         }
 
         // Update WWIV Button
-        private async void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             // Update UI Cosmetics
             string fetchVersion;
@@ -103,15 +157,40 @@ namespace windows_wwiv_update
             button2.Visible = false;
             label1.Visible = true;
             label2.Visible = true;
-            spinStatus.Visible = true;
+            progressBar1.Visible = true;
+            activeStatus.Visible = true;
 
-            // Sleep for 2 Seconds For UI To Build
-            await Task.Delay(2000);
+            // Perform BackgroundWorker
+            m_oWorker.RunWorkerAsync();
+        }
+
+        void m_oWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                Thread.Sleep(100);
+
+                // Update the Progress Bar
+                m_oWorker.ReportProgress(i);
+
+                //If Canclled (NOT IN USE YET)
+                if (m_oWorker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    m_oWorker.ReportProgress(0);
+                    return;
+                }
+            }
+
+            // Fetch Version
+            string fetchVersion;
+            fetchVersion = label2.Text;
 
             // Make Sure Build Number Is NOT Null
             if (fetchVersion != null)
             {
                 // Set Global Variables For Update
+                activeStatus.Text = "Initializing Update...";
                 string backupPath = @"C:\wwiv";
                 string zipPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Documents\" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_wwiv-backup.zip";
                 string extractPath = @"C:\wwiv";
@@ -121,14 +200,17 @@ namespace windows_wwiv_update
                 string updatePath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Downloads\wwiv-build-win-" + fetchVersion + ".zip";
 
                 // Begin WWIV Backup
+                activeStatus.Text = "Performing WWIV Backup...";
                 ZipFile.CreateFromDirectory(backupPath, zipPath);
 
                 // Fetch Latest Sucessful Build
+                activeStatus.Text = "Fetching WWIV Package From Server...";
                 WebClient myWebClient = new WebClient();
                 myStringWebResource = remoteUri + fileName;
                 myWebClient.DownloadFile(myStringWebResource, Environment.GetEnvironmentVariable("USERPROFILE") + @"\Downloads\" + fileName);
 
                 // Patch Existing WWIV Install
+                activeStatus.Text = "Patching WWIV Files For Update...";
                 using (ZipArchive archive = ZipFile.OpenRead(updatePath))
                 {
                     foreach (ZipArchiveEntry entry in archive.Entries)
@@ -147,18 +229,10 @@ namespace windows_wwiv_update
                         }
                     }
                 }
-
-                // Update Complete
-                spinStatus.Visible = false;
-                updateComplete.ForeColor = System.Drawing.Color.Green;
-                updateComplete.Text = "WWIV 5 Build " + fetchVersion + " Is Complete!";
-
-                // Update UI Cosmetics
-                updateComplete.Visible = true;
-                button3.Visible = true;
-                button4.Visible = true;
-                button5.Visible = true;
             }
+
+            //Report 100% completion on operation completed
+            m_oWorker.ReportProgress(100);
         }
 
         // Launch WWIV With Network Button
