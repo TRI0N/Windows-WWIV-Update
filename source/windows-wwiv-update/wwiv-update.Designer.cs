@@ -124,7 +124,7 @@
             this.versionNumber.Name = "versionNumber";
             this.versionNumber.Size = new System.Drawing.Size(138, 13);
             this.versionNumber.TabIndex = 7;
-            this.versionNumber.Text = "WWIV UPDATE V2.0.34 | RC1";
+            this.versionNumber.Text = "WWIV UPDATE V2.0.35 | RC1";
             // 
             // label4
             // 

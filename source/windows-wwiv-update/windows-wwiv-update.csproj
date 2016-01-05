@@ -24,8 +24,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>5</ApplicationRevision>
-    <ApplicationVersion>2.0.34.%2a</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>2.0.35.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -118,7 +118,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\wwiv.png" />
-    <None Include="Resources\Ajax-loader.gif" />
     <Content Include="wwiv-update.ico" />
     <Content Include="wwiv-update32.ico" />
   </ItemGroup>

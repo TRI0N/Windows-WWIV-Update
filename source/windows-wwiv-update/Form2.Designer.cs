@@ -41,12 +41,12 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.versionNumber = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button5 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.activeStatus = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,17 +173,7 @@
             this.versionNumber.Name = "versionNumber";
             this.versionNumber.Size = new System.Drawing.Size(138, 13);
             this.versionNumber.TabIndex = 27;
-            this.versionNumber.Text = "WWIV UPDATE V2.0.34 | RC1";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::windows_wwiv_update.Properties.Resources.wwiv;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(51, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(180, 65);
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
+            this.versionNumber.Text = "WWIV UPDATE V2.0.35 | RC1";
             // 
             // button5
             // 
@@ -230,6 +220,16 @@
             this.label1.Size = new System.Drawing.Size(135, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Updating WWIV 5 to Build:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::windows_wwiv_update.Properties.Resources.wwiv;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(51, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(180, 65);
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
             // 
             // Form2
             // 
