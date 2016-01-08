@@ -54,7 +54,6 @@ namespace windows_wwiv_update
             label1.Visible = false;
             label2.Visible = false;
             button3.Visible = false;
-            button4.Visible = false;
             button5.Visible = false;
             progressBar1.Visible = false;
             activeStatus.Visible = false;
@@ -129,7 +128,6 @@ namespace windows_wwiv_update
 
                 // Update UI Cosmetics
                 button3.Visible = true;
-                button4.Visible = true;
                 button5.Visible = true;
             }
         }
@@ -166,21 +164,7 @@ namespace windows_wwiv_update
 
         void m_oWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            for (int i = 0; i < 100; i++)
-            {
-                Thread.Sleep(100);
-
-                // Update the Progress Bar
-                m_oWorker.ReportProgress(i);
-
-                //If Canclled (NOT IN USE YET)
-                if (m_oWorker.CancellationPending)
-                {
-                    e.Cancel = true;
-                    m_oWorker.ReportProgress(0);
-                    return;
-                }
-            }
+            // PERFORM UPDATE
 
             // Fetch Version
             string fetchVersion;
@@ -199,15 +183,24 @@ namespace windows_wwiv_update
                 string fileName = "wwiv-build-win-" + fetchVersion + ".zip", myStringWebResource = null;
                 string updatePath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Downloads\wwiv-build-win-" + fetchVersion + ".zip";
 
+                // Update Progress Bar
+                m_oWorker.ReportProgress(20);
+
                 // Begin WWIV Backup
                 activeStatus.Text = "Performing WWIV Backup...";
                 ZipFile.CreateFromDirectory(backupPath, zipPath);
+
+                // Update Progress Bar
+                m_oWorker.ReportProgress(40);
 
                 // Fetch Latest Sucessful Build
                 activeStatus.Text = "Fetching WWIV Package From Server...";
                 WebClient myWebClient = new WebClient();
                 myStringWebResource = remoteUri + fileName;
                 myWebClient.DownloadFile(myStringWebResource, Environment.GetEnvironmentVariable("USERPROFILE") + @"\Downloads\" + fileName);
+
+                // Update Progress Bar
+                m_oWorker.ReportProgress(60);
 
                 // Patch Existing WWIV Install
                 activeStatus.Text = "Patching WWIV Files For Update...";
@@ -229,39 +222,14 @@ namespace windows_wwiv_update
                         }
                     }
                 }
+                // Update Progress Bar
+                m_oWorker.ReportProgress(80);
             }
-
             //Report 100% completion on operation completed
             m_oWorker.ReportProgress(100);
         }
 
-        // Launch WWIV With Network Button
-        private void button4_Click(object sender, EventArgs e)
-        {
-            // Launch WWIV, WWIVnet and Latest Changes in Browser.
-            string fetchVersion;
-            fetchVersion = label2.Text;
-            string wwivChanges = "http://build.wwivbbs.org/jenkins/job/wwiv/" + fetchVersion + "/label=windows/changes";
-            Environment.CurrentDirectory = @"C:\wwiv";
-
-            // Launch Telnet Server
-            ProcessStartInfo telNet = new ProcessStartInfo("WWIV5TelnetServer.exe");
-            telNet.WindowStyle = ProcessWindowStyle.Minimized;
-            Process.Start(telNet);
-
-            // Launch binkp.cmd for WWIVnet
-            ProcessStartInfo binkP = new ProcessStartInfo("binkp.cmd");
-            binkP.WindowStyle = ProcessWindowStyle.Minimized;
-            Process.Start(binkP);
-
-            // Launch Latest Realse Changes into Default Browser
-            Process.Start(wwivChanges);
-
-            // Exit Application
-            Application.Exit();
-        }
-
-        // Launch WWIV Without Network Button
+        // Launch WWIV
         private void button3_Click(object sender, EventArgs e)
         {
             // Launch WWIV, WWIVnet and Latest Changes in Browser.

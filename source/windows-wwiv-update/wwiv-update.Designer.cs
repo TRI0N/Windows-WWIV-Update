@@ -123,9 +123,9 @@
             this.versionNumber.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.versionNumber.Location = new System.Drawing.Point(142, 244);
             this.versionNumber.Name = "versionNumber";
-            this.versionNumber.Size = new System.Drawing.Size(138, 13);
+            this.versionNumber.Size = new System.Drawing.Size(137, 13);
             this.versionNumber.TabIndex = 7;
-            this.versionNumber.Text = "WWIV UPDATE V2.0.36 | RC1";
+            this.versionNumber.Text = "WWIV UPDATE v2.0.40 | RC2";
             // 
             // label4
             // 

@@ -39,7 +39,6 @@
             this.infoStatus = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.versionNumber = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -154,16 +153,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(110, 197);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(162, 23);
-            this.button4.TabIndex = 26;
-            this.button4.Text = "Launch WWIV with Network";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // versionNumber
             // 
             this.versionNumber.AutoSize = true;
@@ -171,9 +160,9 @@
             this.versionNumber.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.versionNumber.Location = new System.Drawing.Point(142, 244);
             this.versionNumber.Name = "versionNumber";
-            this.versionNumber.Size = new System.Drawing.Size(138, 13);
+            this.versionNumber.Size = new System.Drawing.Size(137, 13);
             this.versionNumber.TabIndex = 27;
-            this.versionNumber.Text = "WWIV UPDATE V2.0.36 | RC1";
+            this.versionNumber.Text = "WWIV UPDATE v2.0.40 | RC2";
             // 
             // button5
             // 
@@ -238,7 +227,6 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.versionNumber);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.infoStatus);
             this.Controls.Add(this.netStatus);
@@ -276,7 +264,6 @@
         private System.Windows.Forms.Label infoStatus;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label versionNumber;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ProgressBar progressBar1;
