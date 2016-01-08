@@ -20,6 +20,7 @@ using System;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Net;
+using System.Diagnostics;
 
 namespace windows_wwiv_update
 {
@@ -34,6 +35,8 @@ namespace windows_wwiv_update
             string wwivBuild5_0 = "0";
 
             // Fetch Latest Build Number For WWIV 5.1
+            // http://build.wwivbbs.org/jenkins/job/wwiv/label=windows/lastSuccessfulBuild/buildNumber
+            // http://build.wwivbbs.org/jenkins/job/wwiv_5.0.0/label=windows/lastSuccessfulBuild/buildNumber
             WebClient wc = new WebClient();
             string htmlString1 = wc.DownloadString("http://build.wwivbbs.org/jenkins/job/wwiv/lastSuccessfulBuild/label=windows/");
             Match mTitle1 = Regex.Match(htmlString1, "(?:number.*?>)(?<buildNumber1>.*?)(?:<)");
@@ -49,6 +52,32 @@ namespace windows_wwiv_update
             version50.Text = wwivBuild5_0;
         }
 
+        // Get Current Version
+        private void currentVersion()
+        {
+            Process p = new Process();
+            p.StartInfo.FileName = @"C:\wwiv\bbs.exe";
+            p.StartInfo.Arguments = "-V";
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.Start();
+
+            string output = p.StandardOutput.ReadToEnd();
+            p.WaitForExit();
+            char[] delimiter = { '[', '.', ']' };
+            string currentVersion = output;
+            string[] partsVersion;
+            partsVersion = currentVersion.Split(delimiter);
+            string majorVersion = partsVersion[1];
+            string minorVersion = partsVersion[2];
+            string buildVersion = partsVersion[3];
+            string revisVersion = partsVersion[4];
+            string displayVersion;
+            displayVersion = ("WWIV v" + majorVersion + "." + minorVersion + "." + buildVersion + "." + revisVersion);
+
+            currentVersionInfo.Text = displayVersion;
+        }
+        
         // Update To Newest WWIV 5.1
         private void update51_Click(object sender, EventArgs e)
         {

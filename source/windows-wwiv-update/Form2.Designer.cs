@@ -169,11 +169,11 @@
             this.versionNumber.AutoSize = true;
             this.versionNumber.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.versionNumber.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.versionNumber.Location = new System.Drawing.Point(138, 244);
+            this.versionNumber.Location = new System.Drawing.Point(142, 244);
             this.versionNumber.Name = "versionNumber";
             this.versionNumber.Size = new System.Drawing.Size(138, 13);
             this.versionNumber.TabIndex = 27;
-            this.versionNumber.Text = "WWIV UPDATE V2.0.35 | RC1";
+            this.versionNumber.Text = "WWIV UPDATE V2.0.36 | RC1";
             // 
             // button5
             // 

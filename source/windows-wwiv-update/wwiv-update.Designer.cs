@@ -43,6 +43,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.currentVersionInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,11 +121,11 @@
             this.versionNumber.AutoSize = true;
             this.versionNumber.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.versionNumber.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.versionNumber.Location = new System.Drawing.Point(138, 244);
+            this.versionNumber.Location = new System.Drawing.Point(142, 244);
             this.versionNumber.Name = "versionNumber";
             this.versionNumber.Size = new System.Drawing.Size(138, 13);
             this.versionNumber.TabIndex = 7;
-            this.versionNumber.Text = "WWIV UPDATE V2.0.35 | RC1";
+            this.versionNumber.Text = "WWIV UPDATE V2.0.36 | RC1";
             // 
             // label4
             // 
@@ -183,11 +184,23 @@
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
+            // currentVersionInfo
+            // 
+            this.currentVersionInfo.AutoSize = true;
+            this.currentVersionInfo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentVersionInfo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.currentVersionInfo.Location = new System.Drawing.Point(3, 244);
+            this.currentVersionInfo.Name = "currentVersionInfo";
+            this.currentVersionInfo.Size = new System.Drawing.Size(42, 13);
+            this.currentVersionInfo.TabIndex = 14;
+            this.currentVersionInfo.Text = "version";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.currentVersionInfo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -228,6 +241,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label currentVersionInfo;
     }
 }
 
