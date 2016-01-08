@@ -50,6 +50,7 @@ namespace windows_wwiv_update
             }
             version51.Text = wwivBuild5_1;
             version50.Text = wwivBuild5_0;
+            currentVersion();
         }
 
         // Get Current Version

@@ -191,9 +191,8 @@
             this.currentVersionInfo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.currentVersionInfo.Location = new System.Drawing.Point(3, 244);
             this.currentVersionInfo.Name = "currentVersionInfo";
-            this.currentVersionInfo.Size = new System.Drawing.Size(42, 13);
+            this.currentVersionInfo.Size = new System.Drawing.Size(0, 13);
             this.currentVersionInfo.TabIndex = 14;
-            this.currentVersionInfo.Text = "version";
             // 
             // Form1
             // 
