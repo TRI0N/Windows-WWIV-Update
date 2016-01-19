@@ -22,20 +22,18 @@ using System.IO.Compression;
 using System.Net;
 using System.Diagnostics;
 using System.Windows.Forms;
-using System.Threading;
-using System.Threading.Tasks;
 using System.ComponentModel;
 
 namespace windows_wwiv_update
 {
     public partial class Form2 : Form
     {
-
         // BackgroundWorker Event
         BackgroundWorker m_oWorker;
 
         public Form2(string fetchVersion)
         {
+            // Fetch Version
             InitializeComponent();
             label2.Text = fetchVersion;
 
@@ -175,9 +173,9 @@ namespace windows_wwiv_update
             {
                 // Set Global Variables For Update
                 activeStatus.Text = "Initializing Update...";
-                string backupPath = @"C:\wwiv";
+                string backupPath = Directory.GetCurrentDirectory();
                 string zipPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Documents\" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_wwiv-backup.zip";
-                string extractPath = @"C:\wwiv";
+                string extractPath = Directory.GetCurrentDirectory();
                 string extractPath2 = Environment.GetEnvironmentVariable("SystemRoot") + @"\System32";
                 string remoteUri = "http://build.wwivbbs.org/jenkins/job/wwiv/" + fetchVersion + "/label=windows/artifact/";
                 string fileName = "wwiv-build-win-" + fetchVersion + ".zip", myStringWebResource = null;
@@ -255,6 +253,12 @@ namespace windows_wwiv_update
         {
             // Exit Application
             Application.Exit();
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            // Set Update Version Label
+            versionNumber.Text = Form1.updateVersionLabel;
         }
     }
 }
