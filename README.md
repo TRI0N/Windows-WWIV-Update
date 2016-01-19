@@ -11,4 +11,4 @@ Using Windows WWIV Update does not require 3rd Party Programs such as 7zip or wG
 <br>
 <b>WARNING:</b> This File MUST Be Ran From Inside Your WWIV Working Directory (Example: C:\wwiv | E:\bbs) in order to work properly.<br>
 <br>
-<b>NOTICE!</b> This Program Requires Administrative Access for the Following: The Ability to write the required .dll to System32 and to seek the install directory of your BSS. It DOES NOT MODIFY any other system dependent configurations.
+<b>NOTICE!</b> This Program Requires Administrative Access for the Following: The Ability to write the required .dll to System32. It DOES NOT MODIFY any other system dependent configurations.
