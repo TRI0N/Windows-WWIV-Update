@@ -21,11 +21,17 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace windows_wwiv_update
 {
     public partial class Form1 : Form
     {
+        // Global Strings
+        public static string wwivUpdateVersion;
+        public static string updateVersionLabel;
+        public static string updateTagLabel;
+
         public Form1()
         {
             InitializeComponent();
@@ -57,7 +63,7 @@ namespace windows_wwiv_update
         private void currentVersion()
         {
             Process p = new Process();
-            p.StartInfo.FileName = @"C:\wwiv\bbs.exe";
+            p.StartInfo.FileName = @"bbs.exe";
             p.StartInfo.Arguments = "-V";
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;
@@ -77,6 +83,12 @@ namespace windows_wwiv_update
             displayVersion = ("WWIV v" + majorVersion + "." + minorVersion + "." + buildVersion + "." + revisVersion);
 
             currentVersionInfo.Text = displayVersion;
+
+            // Get Current Version Of Windows WWIV Update
+            updateTagLabel = "RC3";
+            wwivUpdateVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            updateVersionLabel = "WWIV UPDATE v" + wwivUpdateVersion + " | " + updateTagLabel;
+            versionNumber.Text = updateVersionLabel;
         }
         
         // Update To Newest WWIV 5.1

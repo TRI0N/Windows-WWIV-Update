@@ -158,11 +158,11 @@
             this.versionNumber.AutoSize = true;
             this.versionNumber.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.versionNumber.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.versionNumber.Location = new System.Drawing.Point(142, 244);
+            this.versionNumber.Location = new System.Drawing.Point(139, 244);
             this.versionNumber.Name = "versionNumber";
-            this.versionNumber.Size = new System.Drawing.Size(137, 13);
+            this.versionNumber.Size = new System.Drawing.Size(110, 13);
             this.versionNumber.TabIndex = 27;
-            this.versionNumber.Text = "WWIV UPDATE v2.0.40 | RC2";
+            this.versionNumber.Text = "WWIV Update Version";
             // 
             // button5
             // 
@@ -246,6 +246,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.Text = "Updating WWIV 5";
+            this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
